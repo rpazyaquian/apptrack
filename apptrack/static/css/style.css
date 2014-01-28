@@ -1,0 +1,4 @@
+h1 > small {
+  display: block;
+  margin-top: 0.5em;
+}

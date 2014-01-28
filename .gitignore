@@ -1,0 +1,8 @@
+
+apptrack/.DS_Store
+
+*.pyc
+
+apptrack/static/.DS_Store
+
+apptrack/static/js/.DS_Store

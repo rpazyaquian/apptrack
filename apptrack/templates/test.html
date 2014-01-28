@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+
+{% block scripts %}
+{{super()}}
+<script type="text/javascript" src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/apptrack-ko.js') }}"></script>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block title %}
+Job App Tracker
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+     <h1 class="page-header">Job App Tracker<small>Now you have no excuse.</small></h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Description</th>
+                <th>Company</th>
+                <th>Submission Date</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: apps">
+            <tr>
+                <td> <span data-bind="visible: !title().editing(), text: title().text, click: function () { edit(title()); }">&nbsp;</span>
+
+                    <input type="text" class="form-control" data-bind="visible: title().editing(), value: title().text, hasFocus: title().editing" />
+                </td>
+                <td> <span data-bind="visible: !description().editing(), text: description().text, click: function () { edit(description()); }">&nbsp;</span>
+
+                    <input type="text" class="form-control" data-bind="visible: description().editing(), value: description().text, hasFocus: description().editing" />
+                </td>
+                <td> <span data-bind="visible: !company().editing(), text: company().text, click: function () { edit(company()); }">&nbsp;</span>
+
+                    <input type="text" class="form-control" data-bind="visible: company().editing(), value: company().text, hasFocus: company().editing" />
+                </td>
+                <td> <span data-bind="visible: !submit_date().editing(), text: submit_date().text, click: function() { edit(submit_date()); }">&nbsp;</span>
+
+                    <input type="date" class="form-control" data-bind="visible: submit_date().editing(), value: submit_date().text, hasFocus: submit_date().editing" />
+                </td>
+                <td> <span data-bind="visible: !link().editing(), text: link().text, click: function() { edit(link()); }">&nbsp;</span>
+
+                    <input type="text" class="form-control" data-bind="visible: link().editing(), value: link().text, hasFocus: link().editing" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button class="btn btn-primary" data-bind="click: addApp">Add new app</button>
+        <button class="btn btn-primary" data-bind="click: logToConsole">Log data to console</button>
+        <button class="btn btn-primary" data-bind="click: saveData">Save</button>
+    </div>
+</div>
+{% endblock %}
